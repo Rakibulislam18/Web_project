@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<section class="section-conten padding-y bg">
+
+{% include 'includes/alerts.html' %}
+<div class="container">
+	<div class="row">
+	<aside class="col-md-3">
+		<!--   SIDEBAR   -->
+		<ul class="list-group">
+			<a class="list-group-item active" href="#"> Balance History</a>
+			<a class="list-group-item" href="#"> Balance    {{ balance }} </a>
+			<a class="btn btn-success btn-block" href="{% url 'add_money' %}">  <span class="text">Add Money</span> </a>
+		</ul>
+		<!-- <br>
+		<ul class="list-group">
+			<a class="list-group-item active" href="#"> My order history </a>
+			<a class="list-group-item" href="#"> Transactions </a>
+			<a class="list-group-item" href="#"> Return and refunds </a>
+			<a class="list-group-item" href="#">Settings </a>
+			<a class="list-group-item" href="#"> My Selling Items </a>
+			<a class="list-group-item" href="#"> Received orders </a>
+		</ul>
+		<br> -->
+		<!-- <a class="btn btn-light btn-block" href="{% url 'logout' %}"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> -->
+		<!--   SIDEBAR .//END   -->
+	</aside>
+	<main class="col-md-9">
+		<article class="card">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3">{{ user.username }} All Orders Details</strong>
+		</header>
+	
+		<div class="table-responsive">
+		<table class="table table-hover">
+			{% for order in orders %}
+			<tr>
+				<td>
+					<p class="title mb-0">Order Id : {{ order.order_number }} </p>
+					<var class="price text-muted">TAKA {{ order.order_total }}</var>
+				</td>
+				<td> Payment Id : {{ order.payment }} <br> Status: {{order.is_ordered}} </td>
+				<td> Complete Order : {{ order.is_ordered }} <br> created_at: {{order.created_at}} </td>
+				
+			</tr>
+			{% endfor %}
+			
+		</table>
+		</div> <!-- table-responsive .end// -->
+		</article> <!-- order-group.// -->
+	</main>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+
+{% endblock %}
